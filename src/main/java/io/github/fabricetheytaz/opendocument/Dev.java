@@ -1,5 +1,6 @@
 package io.github.fabricetheytaz.opendocument;
 
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import io.github.fabricetheytaz.opendocument.converter.html.OpenDocumentToHTML;
 import io.github.fabricetheytaz.opendocument.parser.DocumentObjectModel;
@@ -44,6 +45,8 @@ public class Dev
 			final String html = converter.convert(document);
 
 			System.out.println(html);
+
+			Files.writeString(Paths.get(".", "OpenDocumentToHTML.html"), html);
 			}
 		}
 

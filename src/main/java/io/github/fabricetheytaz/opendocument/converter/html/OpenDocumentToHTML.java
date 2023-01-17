@@ -13,8 +13,12 @@ public class OpenDocumentToHTML extends OpenDocumentConverter
 		{
 		super();
 
+		addConverter(IOpenDocumentText.LIST, "<ul>\n", "</ul>\n");
+		addConverter(IOpenDocumentText.LIST_ITEM, "<li>", "</li>\n");
 		addConverter(IOpenDocumentText.P, "<p>", "</p>\n");
 		addConverter(IOpenDocumentText.SECTION, "<div>", "</div>\n");
+		addConverter(IOpenDocumentText.SOFT_PAGE_BREAK, "", "<hr/>\n");
+		addConverter(IOpenDocumentText.SPAN, "<span>", "</span>");
 
 		/*
 		addStartElementConverter(IOpenDocument.TEXT_1_0, IOpenDocumentText.P, (uri, localName, qName, attributes) ->

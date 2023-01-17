@@ -8,6 +8,10 @@ import io.github.fabricetheytaz.opendocument.IOpenDocument;
  */
 public interface IOpenDocumentText extends IOpenDocument
 	{
+	public static final String LIST = "list";
+
+	public static final String LIST_ITEM = "list-item";
+
 	public static final String P = "p";
 
 	public static final String SECTION = "section";
@@ -19,4 +23,6 @@ public interface IOpenDocumentText extends IOpenDocument
 	public static final String SOFT_PAGE_BREAK = "soft-page-break";
 
 	public static final String STYLE_NAME = "style-name";
+
+	public static final String SPAN = "span";
 	}
