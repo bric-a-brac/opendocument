@@ -13,7 +13,8 @@ public class OpenDocumentToHTML extends OpenDocumentToStringConverter
 		{
 		super();
 
-		addParagraphConverter();
+		addConverter(IOpenDocumentText.P, "<p>", "</p>\n");
+		addConverter(IOpenDocumentText.SECTION, "<div>", "</div>\n");
 
 		/*
 		addStartElementConverter(IOpenDocument.TEXT_1_0, IOpenDocumentText.P, (uri, localName, qName, attributes) ->
@@ -46,8 +47,10 @@ public class OpenDocumentToHTML extends OpenDocumentToStringConverter
 		addElementConverter(notNull(uri), notNull(localName), new TagElementConverter(startTag, endTag));
 		}
 
+	/*
 	public final void addParagraphConverter()
 		{
 		addConverter(IOpenDocumentText.P, "<p>", "</p>\n");
 		}
+	*/
 	}

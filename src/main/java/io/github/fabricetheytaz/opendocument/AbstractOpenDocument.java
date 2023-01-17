@@ -28,6 +28,15 @@ public abstract class AbstractOpenDocument extends ZipArchive implements IOpenDo
 		{
 		return read(path);
 		}
+
+	/**
+	 * @since 0.1.0
+	 */
+	public final Manifest getManifest() throws IOException
+		{
+		return Manifest.from(getEntry(MANIFEST_XML));
+		}
+
 	/*
 	public final String getEntry(final String path) throws IOException
 		{

@@ -8,6 +8,8 @@ import java.io.IOException;
  */
 public interface IOpenDocument extends AutoCloseable
 	{
+	public static final String MANIFEST_1_0 = "urn:oasis:names:tc:opendocument:xmlns:manifest:1.0";
+
 	public static final String TEXT_1_0 = "urn:oasis:names:tc:opendocument:xmlns:text:1.0";
 
 	public static final String CONTENT_XML = "/content.xml";
@@ -20,6 +22,11 @@ public interface IOpenDocument extends AutoCloseable
 	 * @since 0.1.0
 	 */
 	public String getEntry(String path) throws IOException;
+
+	/**
+	 * @since 0.1.0
+	 */
+	public Manifest getManifest() throws IOException;
 
 	/**
 	 * @since 0.1.0
