@@ -8,22 +8,22 @@ import io.github.fabricetheytaz.opendocument.IOpenDocument;
  * @version 0.1.0
  * @since 0.1.0
  */
-public interface IOpenDocumentConverter<T>
+public interface IOpenDocumentConverter
 	{
 	/**
 	 * @since 0.1.0
 	 */
-	public void addStartElementConverter(String uri, String localName, IStartElementConverter<T> converter);
+	public void addStartElementConverter(String uri, String localName, IStartElementConverter converter);
 
 	/**
 	 * @since 0.1.0
 	 */
-	public void addEndElementConverter(String uri, String localName, IEndElementConverter<T> converter);
+	public void addEndElementConverter(String uri, String localName, IEndElementConverter converter);
 
 	/**
 	 * @since 0.1.0
 	 */
-	public default void addElementConverter(final String uri, final String localName, final IElementConverter<T> converter)
+	public default void addElementConverter(final String uri, final String localName, final IElementConverter converter)
 		{
 		addStartElementConverter(uri, localName, converter);
 		addEndElementConverter(uri, localName, converter);
@@ -32,15 +32,20 @@ public interface IOpenDocumentConverter<T>
 	/**
 	 * @since 0.1.0
 	 */
-	public IStartElementConverter<T> getStartElementConverter(String uri, String localName);
+	public IStartElementConverter getStartElementConverter(String uri, String localName);
 
 	/**
 	 * @since 0.1.0
 	 */
-	public IEndElementConverter<T> getEndElementConverter(String uri, String localName);
+	public IEndElementConverter getEndElementConverter(String uri, String localName);
 
 	/**
 	 * @since 0.1.0
 	 */
-	public void convert(IOpenDocument document, Consumer<T> consumer) throws IOException;
+	public String convert(IOpenDocument document) throws IOException;
+
+	/**
+	 * @since 0.1.0
+	 */
+	public void convert(IOpenDocument document, Consumer<String> consumer) throws IOException;
 	}

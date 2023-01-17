@@ -7,7 +7,7 @@ import io.github.fabricetheytaz.opendocument.IOpenDocument;
  * @version 0.1.0
  * @since 0.1.0
  */
-public class OpenDocumentToStringConverter extends AbstractOpenDocumentConverter<String> implements IOpenDocumentToStringConverter
+public class OpenDocumentConverter extends AbstractOpenDocumentConverter
 	{
 	@Override
 	public final String convert(final IOpenDocument document) throws IOException

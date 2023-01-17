@@ -21,18 +21,18 @@ import static io.github.fabricetheytaz.util.Argument.notNull;
  * @version 0.1.0
  * @since 0.1.0
  */
-public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentConverter<T>
+public abstract class AbstractOpenDocumentConverter implements IOpenDocumentConverter
 	{
 	private static final String KEY_FORMAT = "%s:%s";
 
-	private final Map<String, IStartElementConverter<T>> startConverters = new HashMap<>();
-	private final Map<String, IEndElementConverter<T>> endConverters = new HashMap<>();
+	private final Map<String, IStartElementConverter> startConverters = new HashMap<>();
+	private final Map<String, IEndElementConverter> endConverters = new HashMap<>();
 
 	/**
 	 * @since 0.1.0
 	 */
 	@Override
-	public final void addStartElementConverter(final String uri, final String localName, final IStartElementConverter<T> converter)
+	public final void addStartElementConverter(final String uri, final String localName, final IStartElementConverter converter)
 		{
 		startConverters.put(key(uri, localName), notNull(converter));
 		}
@@ -41,7 +41,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 	 * @since 0.1.0
 	 */
 	@Override
-	public final void addEndElementConverter(final String uri, final String localName, final IEndElementConverter<T> converter)
+	public final void addEndElementConverter(final String uri, final String localName, final IEndElementConverter converter)
 		{
 		endConverters.put(key(uri, localName), notNull(converter));
 		}
@@ -50,7 +50,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 	 * @since 0.1.0
 	 */
 	@Override
-	public final IStartElementConverter<T> getStartElementConverter(final String uri, final String localName)
+	public final IStartElementConverter getStartElementConverter(final String uri, final String localName)
 		{
 		return startConverters.get(key(uri, localName));
 		}
@@ -59,7 +59,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 	 * @since 0.1.0
 	 */
 	@Override
-	public final IEndElementConverter<T> getEndElementConverter(final String uri, final String localName)
+	public final IEndElementConverter getEndElementConverter(final String uri, final String localName)
 		{
 		return endConverters.get(key(uri, localName));
 		}
@@ -68,7 +68,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 	 * @since 0.1.0
 	 */
 	@Override
-	public final void convert(final IOpenDocument document, final Consumer<T> consumer) throws IOException
+	public final void convert(final IOpenDocument document, final Consumer<String> consumer) throws IOException
 		{
 		parse(notNull(document).getEntry(IOpenDocument.CONTENT_XML), notNull(consumer));
 		}
@@ -76,7 +76,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 	/**
 	 * @since 0.1.0
 	 */
-	private final void parse(final String xml, final Consumer<T> consumer) throws IOException
+	private final void parse(final String xml, final Consumer<String> consumer) throws IOException
 		{
 		// TODO: Erreurs
 		try
@@ -112,9 +112,9 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 	 */
 	private final class ConvertHandler extends DefaultHandler
 		{
-		private final Consumer<T> consumer;
+		private final Consumer<String> consumer;
 
-		public ConvertHandler(final Consumer<T> consumer)
+		public ConvertHandler(final Consumer<String> consumer)
 			{
 			super();
 
@@ -124,7 +124,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 		@Override
 		public void startElement(final String uri, final String localName, final String qName, final Attributes attributes)
 			{
-			final IStartElementConverter<T> converter = getStartElementConverter(uri, localName);
+			final IStartElementConverter converter = getStartElementConverter(uri, localName);
 
 			if (converter != null)
 				{
@@ -135,7 +135,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 		@Override
 		public void endElement(final String uri, final String localName, final String qName)
 			{
-			final IEndElementConverter<T> converter = getEndElementConverter(uri, localName);
+			final IEndElementConverter converter = getEndElementConverter(uri, localName);
 
 			if (converter != null)
 				{
@@ -147,7 +147,7 @@ public abstract class AbstractOpenDocumentConverter<T> implements IOpenDocumentC
 		public void characters(final char[] ch, final int start, final int length)
 			{
 			// FIXME: Et merde ça marchait bien jusque là grrrrrrrrrrrrrrr mais oui T c'est pas String !!!!!!!!!!!!
-			//consumer.accept(new String(ch, start, length));
+			consumer.accept(new String(ch, start, length));
 			}
 		}
 	}

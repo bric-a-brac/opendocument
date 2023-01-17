@@ -7,10 +7,10 @@ import org.xml.sax.Attributes;
  * @since 0.1.0
  */
 @FunctionalInterface
-public interface IStartElementConverter<T>
+public interface IStartElementConverter
 	{
 	/**
 	 * @since 0.1.0
 	 */
-	public T start(String uri, String localName, String qName, Attributes attributes);
+	public String start(String uri, String localName, String qName, Attributes attributes);
 	}

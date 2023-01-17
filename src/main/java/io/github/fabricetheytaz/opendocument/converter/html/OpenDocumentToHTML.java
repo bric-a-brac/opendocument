@@ -1,13 +1,13 @@
 package io.github.fabricetheytaz.opendocument.converter.html;
 
 import io.github.fabricetheytaz.opendocument.IOpenDocument;
-import io.github.fabricetheytaz.opendocument.converter.OpenDocumentToStringConverter;
+import io.github.fabricetheytaz.opendocument.converter.OpenDocumentConverter;
 import io.github.fabricetheytaz.opendocument.converter.TagElementConverter;
 import io.github.fabricetheytaz.opendocument.text.IOpenDocumentText;
 
 import static io.github.fabricetheytaz.util.Argument.notNull;
 
-public class OpenDocumentToHTML extends OpenDocumentToStringConverter
+public class OpenDocumentToHTML extends OpenDocumentConverter
 	{
 	public OpenDocumentToHTML()
 		{

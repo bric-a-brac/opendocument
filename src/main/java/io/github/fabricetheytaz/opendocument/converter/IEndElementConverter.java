@@ -5,10 +5,10 @@ package io.github.fabricetheytaz.opendocument.converter;
  * @since 0.1.0
  */
 @FunctionalInterface
-public interface IEndElementConverter<T>
+public interface IEndElementConverter
 	{
 	/**
 	 * @since 0.1.0
 	 */
-	public T end(String uri, String localName, String qName);
+	public String end(String uri, String localName, String qName);
 	}

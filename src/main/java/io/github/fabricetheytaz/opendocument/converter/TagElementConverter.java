@@ -4,7 +4,7 @@ import org.xml.sax.Attributes;
 
 import static io.github.fabricetheytaz.util.Argument.notNull;
 
-public class TagElementConverter extends AbstractElementConverter<String>
+public class TagElementConverter extends AbstractElementConverter
 	{
 	private final String startTag;
 	private final String endTag;
