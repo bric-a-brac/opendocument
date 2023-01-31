@@ -1,5 +1,6 @@
 package io.github.fabricetheytaz.opendocument.converter.html;
 
+import org.xml.sax.Attributes;
 import io.github.fabricetheytaz.opendocument.IOpenDocument;
 import io.github.fabricetheytaz.opendocument.converter.OpenDocumentConverter;
 import io.github.fabricetheytaz.opendocument.converter.TagElementConverter;
@@ -19,26 +20,6 @@ public class OpenDocumentToHTML extends OpenDocumentConverter
 		addConverter(IOpenDocumentText.SECTION, "<div>", "</div>\n");
 		addConverter(IOpenDocumentText.SOFT_PAGE_BREAK, "", "<hr/>\n");
 		addConverter(IOpenDocumentText.SPAN, "<span>", "</span>");
-
-		/*
-		addStartElementConverter(IOpenDocument.TEXT_1_0, IOpenDocumentText.P, (uri, localName, qName, attributes) ->
-			{
-			final String style = attributes.getValue(IOpenDocument.TEXT_1_0, IOpenDocumentText.STYLE_NAME);
-
-			if (style != null)
-				{
-				return "<p class=\"" + style + "\">";
-				}
-
-			return "<p>";
-			});
-
-		addEndElementConverter(IOpenDocument.TEXT_1_0, IOpenDocumentText.P, (uri, localName, qName) -> "</p>\n");
-
-		addElementConverter(IOpenDocument.TEXT_1_0, IOpenDocumentText.SECTION, new TagElementConverter("<div>", "</div>\n"));
-
-		addStartElementConverter(IOpenDocument.TEXT_1_0, IOpenDocumentText.SOFT_PAGE_BREAK, (uri, localName, qName, attributes) -> "<hr/>\n");
-		*/
 		}
 
 	public final void addConverter(final String localName, final String startTag, final String endTag)
@@ -51,10 +32,8 @@ public class OpenDocumentToHTML extends OpenDocumentConverter
 		addElementConverter(notNull(uri), notNull(localName), new TagElementConverter(startTag, endTag));
 		}
 
-	/*
-	public final void addParagraphConverter()
+	public static String getStyleName(final Attributes attributes)
 		{
-		addConverter(IOpenDocumentText.P, "<p>", "</p>\n");
+		return attributes.getValue(IOpenDocument.TEXT_1_0, IOpenDocumentText.STYLE_NAME);
 		}
-	*/
 	}

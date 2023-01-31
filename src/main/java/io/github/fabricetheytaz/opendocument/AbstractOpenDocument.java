@@ -2,7 +2,7 @@ package io.github.fabricetheytaz.opendocument;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import io.github.fabricetheytaz.util.ZipArchive;
+import io.github.fabricetheytaz.util.zip.ZipArchive;
 
 /**
  * @version 0.1.0
@@ -24,6 +24,7 @@ public abstract class AbstractOpenDocument extends ZipArchive implements IOpenDo
 	/**
 	 * @since 0.1.0
 	 */
+	@Override
 	public final String getEntry(final String path) throws IOException
 		{
 		return read(path);
@@ -32,9 +33,19 @@ public abstract class AbstractOpenDocument extends ZipArchive implements IOpenDo
 	/**
 	 * @since 0.1.0
 	 */
+	@Override
 	public final Manifest getManifest() throws IOException
 		{
 		return Manifest.from(getEntry(MANIFEST_XML));
+		}
+
+	/**
+	 * @since 0.1.0
+	 */
+	@Override
+	public final Meta getMeta() throws IOException
+		{
+		return Meta.from(getEntry(META_XML));
 		}
 
 	/*
