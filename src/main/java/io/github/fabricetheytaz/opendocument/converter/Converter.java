@@ -5,13 +5,27 @@ import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
-
 import io.github.fabricetheytaz.util.dom.ElementVisitor;
+import io.github.fabricetheytaz.util.emoji.Emojify;
 
 import static io.github.fabricetheytaz.util.Argument.notNull;
 
 public class Converter
 	{
+	private final Emojify emojify;
+
+	public Converter()
+		{
+		this(null);
+		}
+
+	public Converter(final Emojify emojify)
+		{
+		super();
+
+		this.emojify = emojify;
+		}
+
 	protected final Map<String, IOpenDocumentConverter> converters = new HashMap<>();
 
 	public final void addOpenDocumentConverter(final String namespace, final IOpenDocumentConverter converter)
@@ -47,7 +61,14 @@ public class Converter
 		@Override
 		public void startText(final Text text, final int level)
 			{
-			builder.append(text.getTextContent());
+			String content = text.getTextContent();
+
+			if (emojify != null)
+				{
+				content = emojify.replace(content);
+				}
+
+			builder.append(content);
 			}
 		}
 	}

@@ -10,7 +10,7 @@ public class OpenDocumentTextConverter extends OpenDocumentConverter
 
 		addStartElementConverter(IOpenDocumentText.SEQUENCE_DECL, element ->
 			{
-			dump(element);
+			//dump(element);
 			return "";
 			});
 

@@ -1,15 +1,7 @@
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.util.Properties;
 
 public class Dev
 	{
+	/*
 	public static void emojis() throws IOException, URISyntaxException
 		{
 		try (final InputStream stream = Dev.class.getResourceAsStream("/emojis.properties"))
@@ -44,10 +36,11 @@ public class Dev
 			System.out.println(properties.getProperty("water closet"));
 			}
 		}
+	*/
 
 	public static void main(String[] args) throws Exception
 		{
-		emojis();
+		DevOpenDocumentConverter.dev2();
 
 		//final Preferences preferences = Preferences.userNodeForPackage(IOpenDocument.class);
 		//preferences.put("sdd", "sfdsdfsdf");
