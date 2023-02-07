@@ -1,0 +1,16 @@
+p.open=<p>
+p.close=</p>
+
+span.open=<span>
+span.close=</span>
+
+list.open=<ul>
+list.close=</ul>
+
+list-item.open=<li>
+list-item.close=</li>
+
+section.open=<div>
+section.close=</div>
+
+soft-page-break.open=<hr/>

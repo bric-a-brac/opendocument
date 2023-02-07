@@ -1,4 +1,4 @@
-package io.github.fabricetheytaz.opendocument.converter;
+package io.github.fabricetheytaz.opendocument.converter.old;
 
 /**
  * @version 0.1.0

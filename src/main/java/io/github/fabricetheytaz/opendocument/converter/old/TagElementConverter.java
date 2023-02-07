@@ -1,4 +1,4 @@
-package io.github.fabricetheytaz.opendocument.converter;
+package io.github.fabricetheytaz.opendocument.converter.old;
 
 import org.xml.sax.Attributes;
 

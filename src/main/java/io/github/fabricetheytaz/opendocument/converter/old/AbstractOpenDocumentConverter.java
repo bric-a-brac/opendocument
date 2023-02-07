@@ -1,4 +1,4 @@
-package io.github.fabricetheytaz.opendocument.converter;
+package io.github.fabricetheytaz.opendocument.converter.old;
 
 import java.io.IOException;
 import java.io.Reader;
